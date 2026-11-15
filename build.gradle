@@ -1,0 +1,39 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'maven-publish'
+}
+
+version = project.version
+group = project.group
+base { archivesName = 'pullmypearl' }
+
+repositories { mavenCentral() }
+
+loom {
+	splitEnvironmentSourceSets()
+	mods {
+		"pullmypearl" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	clientImplementation "com.alphacephei:vosk:0.3.45"
+	clientImplementation "net.java.dev.jna:jna:5.13.0"
+	include "com.alphacephei:vosk:0.3.45"
+	include "net.java.dev.jna:jna:5.13.0"
+}
+
+processResources {
+	inputs.property "version", project.version
+	filesMatching("fabric.mod.json") { expand "version": inputs.properties.version }
+}
+
+tasks.withType(JavaCompile).configureEach { options.release = 25 }
+java { sourceCompatibility = JavaVersion.VERSION_25; targetCompatibility = JavaVersion.VERSION_25 }
