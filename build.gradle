@@ -7,7 +7,10 @@ version = project.version
 group = project.group
 base { archivesName = 'pullmypearl' }
 
-repositories { mavenCentral() }
+repositories {
+	mavenCentral()
+	maven { url = 'https://maven.terraformersmc.com/releases/' }
+}
 
 loom {
 	splitEnvironmentSourceSets()
@@ -25,6 +28,7 @@ dependencies {
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
 	clientImplementation "com.alphacephei:vosk:0.3.45"
+	clientImplementation "com.terraformersmc:modmenu:20.0.3"
 	clientImplementation "net.java.dev.jna:jna:5.13.0"
 	include "com.alphacephei:vosk:0.3.45"
 	include "net.java.dev.jna:jna:5.13.0"

@@ -5,8 +5,13 @@
   "name": "Pull My Pearl",
   "authors": ["Joah"],
   "license": "All rights reserved",
+  "icon": "assets/pullmypearl/icon.png",
   "description": "Say \"Klaus, pulle meine Perle\" to right-click once.",
   "environment": "client",
-  "entrypoints": { "client": ["de.joah.pullmypearl.PullMyPearlClient"] },
-  "depends": { "fabricloader": ">=0.20.1", "minecraft": "~26.2", "java": ">=25", "fabric-api": "*" }
+  "entrypoints": {
+    "client": ["de.joah.pullmypearl.PullMyPearlClient"],
+    "modmenu": ["de.joah.pullmypearl.ModMenuIntegration"]
+  },
+  "depends": { "fabricloader": ">=0.20.1", "minecraft": "~26.2", "java": ">=25", "fabric-api": "*" },
+  "suggests": { "modmenu": "*" }
 }
